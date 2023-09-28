@@ -10,6 +10,13 @@ import (
 	"github.com/bnema/kickstart-echo-htmx/internal/core"
 )
 
+var (
+	// modelsPath is the path to the main templates
+	modelsPath = "html/"
+	// fragmentsPath is the path to the fragments templates (components)
+	fragmentsPath = "html/fragments"
+)
+
 type Renderer struct {
 	Template     *template.Template
 	ParseError   error
@@ -43,9 +50,9 @@ func (r *Renderer) Render(data interface{}, a *core.App) (string, error) {
 }
 
 // GetHTMLRenderer function returns a new Renderer instance
-func GetHTMLRenderer(mainPath string, filename string, fs fs.FS, a *core.App, fragmentsPath ...string) (*Renderer, error) {
+func GetHTMLRenderer(filename string, fs fs.FS, a *core.App) (*Renderer, error) {
 	// Full path to the main template
-	fullPath := path.Join(mainPath, filename)
+	fullPath := path.Join(modelsPath, filename)
 	// Check if the file exists in the provided fs.FS using fs.Open
 	file, err := fs.Open(fullPath)
 	if err != nil {
@@ -59,13 +66,11 @@ func GetHTMLRenderer(mainPath string, filename string, fs fs.FS, a *core.App, fr
 		return nil, fmt.Errorf("failed to parse %s: %w", filename, err)
 	}
 
-	// If a fragments path is provided, parse the fragment templates
-	if len(fragmentsPath) > 0 && fragmentsPath[0] != "" {
-		fragmentsGlob := path.Join(fragmentsPath[0], "*.gohtml")
-		_, err = tmpl.ParseFS(fs, fragmentsGlob)
-		if err != nil {
-			return nil, fmt.Errorf("failed to parse fragments: %w", err)
-		}
+	// Parse the fragment templates
+	fragmentsGlob := path.Join(fragmentsPath, "*.gohtml")
+	_, err = tmpl.ParseFS(fs, fragmentsGlob)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse fragments: %w", err)
 	}
 
 	// Return the Renderer instance

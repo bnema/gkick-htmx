@@ -2,7 +2,6 @@ package extra
 
 import (
 	"net/http"
-	"strings"
 
 	"log/slog"
 
@@ -46,22 +45,22 @@ func ErrorHandlerMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	}
 }
 
-// RestrictSubfoldersMiddleware restricts access to all subfolders by returning a 403 status
-func RestrictSubfoldersMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		// folder assets
-		if strings.HasPrefix(c.Request().URL.Path, "/assets/") {
-			return c.String(http.StatusForbidden, "Forbidden")
-		}
-		// folder css
-		if strings.HasPrefix(c.Request().URL.Path, "/css/") {
-			return c.String(http.StatusForbidden, "Forbidden")
-		}
-		// folder js
-		if strings.HasPrefix(c.Request().URL.Path, "/js/") {
-			return c.String(http.StatusForbidden, "Forbidden")
-		}
-		return next(c)
-	}
+// // RestrictSubfoldersMiddleware restricts access to all subfolders by returning a 403 status
+// func RestrictSubfoldersMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+// 	return func(c echo.Context) error {
+// 		// folder assets
+// 		if strings.HasPrefix(c.Request().URL.Path, "/assets/") {
+// 			return c.String(http.StatusForbidden, "Forbidden")
+// 		}
+// 		// folder css
+// 		if strings.HasPrefix(c.Request().URL.Path, "/css/") {
+// 			return c.String(http.StatusForbidden, "Forbidden")
+// 		}
+// 		// folder js
+// 		if strings.HasPrefix(c.Request().URL.Path, "/js/") {
+// 			return c.String(http.StatusForbidden, "Forbidden")
+// 		}
+// 		return next(c)
+// 	}
 
-}
+// }

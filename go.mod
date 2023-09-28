@@ -4,6 +4,7 @@ go 1.21.1
 
 require (
 	github.com/gorilla/sessions v1.2.1
+	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo-contrib v0.15.0
 	github.com/labstack/echo/v4 v4.11.1
 	github.com/microcosm-cc/bluemonday v1.0.25

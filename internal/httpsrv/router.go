@@ -17,30 +17,31 @@ func RegisterRoutes(e *echo.Echo, a *core.App) *echo.Echo {
 	e.Use(extra.AccessLogMiddleware)
 	e.Use(extra.ErrorHandlerMiddleware)
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte(os.Getenv("SESSION_SECRET")))))
-	e.Use(extra.RestrictSubfoldersMiddleware)
 
 	// Register routes
 	bindRootRoute(e, a, "/")
 	bindStaticRoute(e, a, "/*")
-
+	// hx-get="/api/hello" return "hello from server"
+	e.GET("/api/hello", func(c echo.Context) error {
+		return c.String(200, "hello from server")
+	})
 	return e
 }
 
 // bindStaticRoute binds the static route
 func bindStaticRoute(e *echo.Echo, a *core.App, path string) {
 	e.GET(path, func(c echo.Context) error {
-		// set hello world in session
-		sess, _ := session.Get("session", c)
-		sess.Values["hello"] = "world"
-		sess.Save(c.Request(), c.Response())
-
-		return c.String(403, "Forbidden")
+		return handler.StaticRoute(c, a)
 	})
 }
 
 // bindRootRoute binds the root route
 func bindRootRoute(e *echo.Echo, a *core.App, path string) {
 	e.GET(path, func(c echo.Context) error {
+		// set hello world in session
+		sess, _ := session.Get("session", c)
+		sess.Values["hello"] = "world"
+		sess.Save(c.Request(), c.Response())
 		return handler.RootPath(c, a)
 	})
 }

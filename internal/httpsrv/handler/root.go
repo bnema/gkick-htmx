@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// RootPath handles the root route to display index.gohtml from the templateFS with the data from strings.yml
+// RootPath handles the root route to display index.gohtml
 func RootPath(c echo.Context, a *core.App) error {
 	// Retrieve the session
 	sess, err := session.Get("session", c)
@@ -24,7 +24,7 @@ func RootPath(c echo.Context, a *core.App) error {
 	}
 
 	// Render the template with GenericRenderUtility
-	renderedHTML, err := extra.GenericRenderUtility(c, a, a.Embed.MainPath, "index.gohtml", data)
+	renderedHTML, err := extra.GenericRenderUtility(c, "index.gohtml", data, a)
 	if err != nil {
 		return err
 	}

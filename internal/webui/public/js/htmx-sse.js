@@ -319,4 +319,4 @@ This extension adds support for Server Sent Events to htmx.  See /www/extensions
 		}
 	}
 
-})();
+})()

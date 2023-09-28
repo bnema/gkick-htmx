@@ -5,6 +5,6 @@
   },
   "scripts": {
     "build:css": "tailwindcss build src/styles.css -o dist/styles.css",
-    "dev:css": "tailwindcss -i internal/webui/public/css/custom.css -o internal/webui/public/css/tailwind.css --watch"
+    "dev:css": "tailwindcss -i internal/webui/public/css/custom.css -o internal/webui/public/css/tailwind.css --watch --minify"
   }
 }

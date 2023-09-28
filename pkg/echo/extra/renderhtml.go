@@ -7,10 +7,10 @@ import (
 )
 
 // GenericRenderUtility renders a common HTML template with the provided data.
-func GenericRenderUtility(c echo.Context, a *core.App, path string, templateName string, customData map[string]interface{}) (string, error) {
+func GenericRenderUtility(c echo.Context, templateName string, customData map[string]interface{}, a *core.App) (string, error) {
 
 	// Navigate inside the fs.FS to get the template
-	rendererData, err := gorender.GetHTMLRenderer(path, templateName, a.TemplateFS, a)
+	rendererData, err := gorender.GetHTMLRenderer(templateName, a.TemplateFS, a)
 	if err != nil {
 		return "", err
 	}

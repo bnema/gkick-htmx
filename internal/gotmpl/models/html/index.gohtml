@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Title }}</title>
-  </head>
+  {{template "header.gohtml" .}}
   <body>
-    <h1>{{ .Title }}</h1>
-    <p>{{ .BuildVersion }}</p>
-    <p>Session Hello: {{ .HelloSession }}</p>
+    <!-- Hello World container -->
+    <div
+      id="hello-world"
+      class="text-2xl text-center font-bold text-gray-700 p-6"
+    >
+      <h1>{{ .Title }}</h1>
+      <p>Build {{ .BuildVersion }}</p>
+      <p>Session Hello: {{ .HelloSession }}</p>
+    </div>
+    <!-- Instructions -->
+    <div
+      id="swap-me"
+      class="slide-it text-center text-blue-900 font-bold text-5xl cursor-pointer p-6"
+      hx-trigger="click"
+      hx-swap="innerHTML transition:true"
+      hx-get="/api/hello"
+    >
+      <p>Click the text to simulate an htmx API call.</p>
+    </div>
   </body>
 </html>
+<!-- Path: internal/gotmpl/models/html/header.gohtml -->
