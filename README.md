@@ -16,7 +16,6 @@ The project also aims to maintain a structure that aligns with Golang's standard
 ## Getting Started
 
 1. **Clone the repository.**
-
     ```
     git clone https://github.com/bnema/kickstart-echo.git .
     ```
@@ -28,25 +27,27 @@ The project also aims to maintain a structure that aligns with Golang's standard
     ```
     rm -rf .git
     ```
-4. **Create a .env at the root of the project and add a SESSION_SECRET.**
-   ```
-    SESSION_SECRET=your-secret-here
-    ```
-5. **Install Air for Hot Reloading.**
+4. **Install Air for Hot Reloading.**
     Follow the [Air installation guide](https://github.com/cosmtrek/air).
-6. **Install Bun for Tailwind CSS.**
+5. **Install Bun for Tailwind CSS.**
     Follow the [Bun installation guide](https://bun.sh/docs/installation).
-7. **Run Bun Install.**
+6. **Run Bun Install.**
     ```
     bun install
     ```
-8. **Execute Tailwind with Bun.**
+7. **Execute Tailwind with Bun.**
     ```
     bun run dev:css
     ```
+8. **Create a .env at the root of the project (see .env.example).**
 9. **Run the Application (Air will rebuild and restart the application on code changes).**
     ```
     air
+    ```
+10. **If the 2 previous commands are successful, you can run dev.sh who will run them in parallel.**
+    ```
+    chmod +x dev.sh
+    ./dev.sh
     ```
 
 ## License
