@@ -10,6 +10,7 @@ This is my kickstart project for building web applications. The stack is minimal
 - **Go Templates Rendering**: HTML rendering with Go's standard library.
 - **Tailwind CSS**: Integrated for utility-first CSS styling (because i'm too lazy to write CSS).
 - **Air for Hot Reloading**: Enables a smooth development experience by automatically reloading the application on code changes.
+- **Sanitize HTML**: Sanitize HTML inputs with the [bluemonday](https://github.com/microcosm-cc/bluemonday) package.
   
 The project also aims to maintain a structure that aligns with Golang's standard project layout.
 
