@@ -29,10 +29,6 @@ The project also aims to maintain a structure that aligns with Golang's standard
     ```
     git clone https://github.com/bnema/kickstart-echo.git .
     ```
-2. **Install dependencies.**
-    ```
-    go mod tidy
-    ```
 3. **Remove the .git folder and initialize a new one.**
     ```
     rm -rf .git && git init
@@ -40,6 +36,10 @@ The project also aims to maintain a structure that aligns with Golang's standard
 4. **Remove go.mod, go.sum and create a new project.**
     ```
     rm go.mod go.sum && go mod init github.com/username/project
+    ```
+2. **Install dependencies.**
+    ```
+    go mod tidy
     ```
 7. **Run Bun Install.**
     ```
