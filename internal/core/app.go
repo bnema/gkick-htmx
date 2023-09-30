@@ -9,19 +9,14 @@ import (
 
 	"github.com/bnema/kickstart-echo-htmx/internal/gotmpl"
 	"github.com/bnema/kickstart-echo-htmx/internal/webui"
+	"github.com/bnema/kickstart-echo-htmx/pkg/gorender"
 	"github.com/joho/godotenv"
 )
 
-const (
-	// BuildVersion is the version of the build
-	BuildVersion = "0.0.2"
-)
-
 type App struct {
-	TemplateFS   fs.FS
-	PublicFS     fs.FS
-	BuildVersion string
-	HttpPort     int
+	BuildVersion           string
+	HttpPort               int
+	*gorender.RenderConfig // Embed the extra.RenderConfig struct
 }
 
 type AppInterface interface {
@@ -49,10 +44,11 @@ func NewApp() *App {
 	}
 
 	return &App{
-		BuildVersion: BuildVersion,
-		HttpPort:     httpPort,
-		TemplateFS:   gotmpl.TemplateFS,
-		PublicFS:     webui.PublicFS,
+		HttpPort: httpPort,
+		RenderConfig: &gorender.RenderConfig{
+			TemplateFS: gotmpl.TemplateFS,
+			PublicFS:   webui.PublicFS,
+		},
 	}
 }
 

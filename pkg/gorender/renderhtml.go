@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"html/template"
 	"io/fs"
+	"os"
 	"path"
-
-	"github.com/bnema/kickstart-echo-htmx/internal/core"
 )
 
 var (
@@ -17,14 +16,16 @@ var (
 	fragmentsPath = "html/fragments"
 )
 
-type Renderer struct {
+type RenderConfig struct {
 	Template     *template.Template
 	ParseError   error
 	BuildVersion string
+	TemplateFS   fs.FS
+	PublicFS     fs.FS
 }
 
 // Render function renders the template with the given data
-func (r *Renderer) Render(data interface{}, a *core.App) (string, error) {
+func (r *RenderConfig) Render(data interface{}) (string, error) {
 	if r.ParseError != nil {
 		return "", fmt.Errorf("failed to parse template: %w", r.ParseError)
 
@@ -50,7 +51,7 @@ func (r *Renderer) Render(data interface{}, a *core.App) (string, error) {
 }
 
 // GetHTMLRenderer function returns a new Renderer instance
-func GetHTMLRenderer(filename string, fs fs.FS, a *core.App) (*Renderer, error) {
+func GetHTMLRenderer(filename string, fs fs.FS) (*RenderConfig, error) {
 	// Full path to the main template
 	fullPath := path.Join(modelsPath, filename)
 	// Check if the file exists in the provided fs.FS using fs.Open
@@ -74,8 +75,8 @@ func GetHTMLRenderer(filename string, fs fs.FS, a *core.App) (*Renderer, error) 
 	}
 
 	// Return the Renderer instance
-	return &Renderer{
+	return &RenderConfig{
 		Template:     tmpl,
-		BuildVersion: a.BuildVersion,
+		BuildVersion: os.Getenv("BUILD_VERSION"),
 	}, nil
 }

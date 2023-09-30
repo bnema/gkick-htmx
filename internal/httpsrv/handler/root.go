@@ -24,7 +24,7 @@ func RootPath(c echo.Context, a *core.App) error {
 	}
 
 	// Render the template with GenericRenderUtility
-	renderedHTML, err := extra.GenericRenderUtility(c, "index.gohtml", data, a)
+	renderedHTML, err := extra.GenericRenderUtility(c, "index.gohtml", data, a.RenderConfig)
 	if err != nil {
 		return err
 	}
