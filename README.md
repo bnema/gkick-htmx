@@ -37,29 +37,29 @@ The project also aims to maintain a structure that aligns with Golang's standard
     ```
     rm go.mod go.sum && go mod init github.com/username/project
     ```
-2. **Install dependencies.**
+2. **Install package dependencies.**
     ```
     go mod tidy
     ```
-7. **Run Bun Install.**
+3. **Run Bun install for Tailwind CSS dependencies.**
     ```
     bun install
     ```
-8. **Execute Tailwind with Bun.**
+4. **Execute Tailwind with Bun.**
     ```
     bun run dev:css
     ```
-9. **Create a .env at the root of the project (see .env.example).**
-10. **Run the Application (Air will rebuild and restart the application on code changes).**
+5. **Create a .env at the root of the project (see .env.example).**
+6.  **Run the Application (Air will rebuild and restart the application on code changes).**
     ```
     air
     ```
-11. **If the 2 previous commands are successful, you can run dev.sh who will run them in parallel.**
+7.  **If the 2 previous commands are successful, you can run dev.sh who will run them in parallel.**
     ```
     chmod +x dev.sh
     ./dev.sh
     ```
-12. **Bonus: The superlazy, one-liner command.**
+8.  **Bonus: The superlazy, one-liner command.**
     ```
     export MODULE_NAME=github.com/CHANGE_ME/I_MEAN_SERIOUSLY; git clone http://github.com/bnema/kickstart-echo.git . && go mod tidy && rm -rf .git && git init && rm go.mod go.sum && go mod init $MODULE_NAME && bun install && cp .env.example .env && chmod +x dev.sh && ./dev.sh
     ```
