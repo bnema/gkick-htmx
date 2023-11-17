@@ -1,10 +1,9 @@
 {
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.5"
   },
   "scripts": {
-    "build:css": "tailwindcss build src/styles.css -o dist/styles.css",
-    "dev:css": "tailwindcss -i internal/webui/public/css/custom.css -o internal/webui/public/css/tailwind.css --watch --minify"
+    "dev:css": "tailwindcss -i ./internal/webui/public/assets/css/custom.css -o ./internal/webui/public/assets/css/tailwind.css --watch --minify"
   }
 }

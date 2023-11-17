@@ -1,11 +1,3 @@
-/**
- * Path: internal/ui/public//css/custom.css
- *
- * @format
- */
-
-/* Embeded path : /css/cutsom.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

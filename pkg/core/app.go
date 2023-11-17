@@ -42,12 +42,10 @@ func NewApp() *App {
 		log.Fatalf("Failed to create template renderer: %v", err)
 	}
 
-	// Pimp the echo instance with default content and error handlers
+	// Pimp the echo instance
 	e := app.Echo
 	e.Renderer = renderer
 	e.StaticFS("/", webui.StaticFS)
-	e.Use(http.AccessLogMiddleware)
-	e.Use(http.ErrorHandlerMiddleware)
 	e.Use(http.SetCacheControl)
 
 	return app
